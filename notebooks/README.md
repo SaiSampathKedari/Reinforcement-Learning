@@ -1,0 +1,17 @@
+# Notebooks
+
+Each subdirectory is one environment. Inside, notebooks are numbered by the
+algorithm-progression order in which they were added (typically simpler /
+earlier-in-the-book methods first).
+
+## Environments
+
+| Folder | Env | Source |
+|---|---|---|
+| [01_blackjack/](01_blackjack/) | Blackjack | S&B §5.1 |
+
+## S&B figure cross-reference
+
+| Figure | Notebook |
+|---|---|
+| Fig 5.1 | [01_blackjack/01_mc_prediction.ipynb](01_blackjack/01_mc_prediction.ipynb) |
