@@ -14,4 +14,4 @@ earlier-in-the-book methods first).
 
 | Figure | Notebook |
 |---|---|
-| Fig 5.1 | [01_blackjack/01_mc_prediction.ipynb](01_blackjack/01_mc_prediction.ipynb) |
+| Fig 5.1 | [01_blackjack/01_mc_prediction_blackjack.ipynb](01_blackjack/01_mc_prediction_blackjack.ipynb) |

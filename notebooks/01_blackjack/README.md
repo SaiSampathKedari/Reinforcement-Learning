@@ -8,7 +8,7 @@ decisions only modelled for `player_sum in [12, 21]`. Env code lives in
 
 | File | Reproduces | Algorithm |
 |---|---|---|
-| [01_mc_prediction.ipynb](01_mc_prediction.ipynb) | S&B Fig 5.1 | First-visit MC prediction |
+| [01_mc_prediction_blackjack.ipynb](01_mc_prediction_blackjack.ipynb) | S&B Fig 5.1 | First-visit MC prediction |
 
 ## Helper files
 
