@@ -7,12 +7,16 @@ from rl.envs.base import TabularEnv
 
 Policy = Callable[[int, np.random.Generator], int]  # (state, rng) -> action
 
+Trajectory = list[tuple[int, int, float, int, bool]] 
+"""Trajectory format:
+        [(s_t, a_t, r_{t+1}, s_{t+1}, terminated)  for t = 0, ..., T-1]
+"""
 
 def generate_episode(
     env: TabularEnv,
     policy: Policy,
     rng: np.random.Generator,
-) -> list[tuple[int, int, float, int, bool]]:
+) -> Trajectory:
     """Play one episode under `policy`. Returns the SARS' trajectory.
 
     Trajectory format:
@@ -34,4 +38,40 @@ def generate_episode(
         s_next, r, terminated = env.step(s_t, a_t, rng)
         trajectory.append((s_t, a_t, r, s_next, terminated))
         s_t = s_next
+    return trajectory
+
+def sample_uniform_start(
+    env     :   TabularEnv,
+    rng     :   np.random.Generator,
+) -> tuple[int, int]:
+    """Sample `(s_0, a_0)` uniformly. `s_0` from non-terminal states,
+    `a_0` from `[0, env.n_actions)`. Used by MC with Exploring Starts.
+    """
+    terminals = env.terminal_states()
+    non_terminals = [s for s in range(env.n_states) if s not in terminals]
+    s_0 = int(rng.choice(non_terminals))
+    a_0 = int(rng.integers(env.n_actions))
+    return s_0, a_0
+
+def generate_episode_from(
+  env       :   TabularEnv,
+  policy    :   Policy,
+  s_0       :   int,
+  a_0       :   int,
+  rng       :   np.random.Generator,
+) -> Trajectory:
+    """Play one episode starting from `(s_0, a_0)`, then following `policy`.
+
+    First step uses the forced action `a_0`. Subsequent actions are chosen
+    via `policy(s_t, rng)`. Used by MC with Exploring Starts.
+    """
+    trajectory: Trajectory = []
+    s_t, a_t = s_0, a_0
+    terminated = False
+    while not terminated:
+        s_next, r, terminated = env.step(s_t, a_t, rng)
+        trajectory.append((s_t, a_t, r, s_next, terminated))
+        s_t = s_next
+        if not terminated:
+            a_t = policy(s_t, rng)
     return trajectory
