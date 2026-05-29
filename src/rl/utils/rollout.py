@@ -6,6 +6,11 @@ import numpy as np
 from rl.envs.base import TabularEnv
 
 Policy = Callable[[int, np.random.Generator], int]  # (state, rng) -> action
+EpisodeCallback = Callable[[int, np.ndarray], None]  # (episode_index, Q) -> None
+"""Optional hook fired by control algorithms at each episode boundary, receiving
+the current episode index and the live Q array. Copy Q if you store it (it is
+mutated in place). Used to record learning dynamics (Q / greedy-policy evolution)
+without changing the algorithm's return value."""
 
 Trajectory = list[tuple[int, int, float, int, bool]] 
 """Trajectory format:

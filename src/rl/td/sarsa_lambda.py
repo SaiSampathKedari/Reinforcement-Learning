@@ -10,7 +10,7 @@ from __future__ import annotations
 import numpy as np
 
 from rl.envs.base import TabularEnv
-from rl.utils.rollout import Policy
+from rl.utils.rollout import Policy, EpisodeCallback
 from rl.utils.policies import greedy_action, epsilon_greedy_action
 
 
@@ -22,6 +22,7 @@ def sarsa_lambda(
     lam         :   float,
     epsilon     :   float = 0.1,
     decay_epsilon:  bool = False,
+    on_episode_end: EpisodeCallback | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """SARSA(lambda) on-policy TD control with accumulating eligibility traces.
 
@@ -41,6 +42,9 @@ def sarsa_lambda(
         lam: trace decay in [0, 1]. lambda=0 -> SARSA(0); lambda=1 -> MC.
         epsilon: exploration probability for the epsilon-greedy policy.
         decay_epsilon: if True, epsilon = 1/episode (GLIE); else fixed.
+        on_episode_end: optional hook called as `on_episode_end(episode, Q)`
+            after each episode, for recording learning dynamics. Copy Q to store
+            it (mutated in place). None (default) leaves behaviour unchanged.
 
     Returns:
         Q: action-value estimates of shape `(n_states, n_actions)`.
@@ -78,6 +82,9 @@ def sarsa_lambda(
             Q += alpha * delta * z          # update all (s, a) by trace
 
             s_t, a_t = s_next, a_next
+
+        if on_episode_end is not None:
+            on_episode_end(k, Q)                      # expose Q at the episode boundary
 
     # Derive the greedy policy from the final Q.
     pi = np.array([greedy_action(Q[s]) for s in range(env.n_states)])

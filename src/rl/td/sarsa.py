@@ -11,7 +11,7 @@ from __future__ import annotations
 import numpy as np
 
 from rl.envs.base import TabularEnv
-from rl.utils.rollout import Policy
+from rl.utils.rollout import Policy, EpisodeCallback
 from rl.utils.policies import epsilon_greedy_action, greedy_action
 
 
@@ -22,6 +22,7 @@ def sarsa(
     alpha       :   float,
     epsilon     :   float = 0.1,
     decay_epsilon:  bool = False,
+    on_episode_end: EpisodeCallback | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """SARSA(0) on-policy TD control.
 
@@ -44,6 +45,9 @@ def sarsa(
         epsilon: exploration probability for the epsilon-greedy policy.
         decay_epsilon: if True, epsilon = 1/episode (GLIE, converges to q*);
             if False, fixed epsilon (converges to best epsilon-soft policy).
+        on_episode_end: optional hook called as `on_episode_end(episode, Q)`
+            after each episode, for recording learning dynamics. Copy Q to store
+            it (mutated in place). None (default) leaves behaviour unchanged.
 
     Returns:
         Q: action-value estimates of shape `(n_states, n_actions)`.
@@ -82,5 +86,8 @@ def sarsa(
             pi[s_t] = greedy_action(Q[s_t])          # track greedy policy
 
             s_t, a_t = s_next, a_next                 # advance
+
+        if on_episode_end is not None:
+            on_episode_end(k, Q)                      # expose Q at the episode boundary
 
     return Q, pi
