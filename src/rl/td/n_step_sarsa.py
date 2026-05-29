@@ -29,6 +29,9 @@ def n_step_sarsa(
         Phase 1 (while episode runs): step + update Q(S_tau, A_tau) once tau >= 0.
             G_{tau:tau+n} = R_{tau+1} + ... + gamma^{n-1}*R_{tau+n}
                             + gamma^n * Q(S_{tau+n}, A_{tau+n}).
+            The bootstrap term is included only while S_{tau+n} is non-terminal
+            (tau+n < T); at the terminal step the return is truncated to the
+            rewards alone (there is no A_T to bootstrap from).
         Phase 2 (after terminal): flush remaining n-1 pairs with truncated
             returns (no bootstrap -- past terminal).
 
@@ -77,7 +80,9 @@ def n_step_sarsa(
                 G = 0.0
                 for j in range(n):
                     G += gamma**j * rewards[tau + j]
-                G += gamma**n * Q[states[tau + n], actions[tau + n]]
+                if not terminated:   # bootstrap only while S_{tau+n} is non-terminal (tau+n < T);
+                    # at the terminal step there is no A_T, and the return is truncated (no bootstrap).
+                    G += gamma**n * Q[states[tau + n], actions[tau + n]]
 
                 s_tau, a_tau = states[tau], actions[tau]
                 Q[s_tau, a_tau] += alpha * (G - Q[s_tau, a_tau])
