@@ -17,29 +17,54 @@ Requires Python ≥ 3.10.
 
 ## Layout
 
-- `src/rl/` — algorithms and environments.
-- `notebooks/` — experiments, one folder per environment.
-- `reports/` — LaTeX derivations (PDFs).
+- `src/rl/`: algorithms and environments.
+- `notebooks/`: experiments, one folder per environment.
+- `reports/`: derivations, proofs, and convergence analysis.
 
 ## Algorithms
 
-Monte Carlo (prediction, exploring-starts and ε-soft control) · TD prediction · n-step TD · TD(λ) · Sarsa(0) · n-step Sarsa · Sarsa(λ) · Q-learning. Mathematical derivations live in [`reports/`](reports/) (LaTeX PDFs).
+| Topic (Sutton & Barto) | Status |
+|---|:--:|
+| Monte Carlo methods (Ch. 5) | ● |
+| Temporal-difference learning (Ch. 6) | ● |
+| n-step bootstrapping (Ch. 7) | ● |
+| Eligibility traces (Ch. 12) | ● |
+| Planning & model-based learning (Ch. 8) | ○ |
+| Value-function approximation (Ch. 9-10) | ○ |
+| Policy-gradient & actor-critic (Ch. 13) | ○ |
+
+<sub>● implemented &nbsp;·&nbsp; ○ planned</sub>
 
 ## Environments
 
-### Blackjack — [`notebooks/01_blackjack/`](notebooks/01_blackjack/)
+| Environment | Source | Status | Notebook |
+|---|---|:--:|---|
+| Blackjack | S&B §5.1 | ● | [`01_blackjack`](notebooks/01_blackjack/) |
+| Windy Gridworld | S&B Example 6.5 | ● | [`02_windy_gridworld`](notebooks/02_windy_gridworld/) |
+| Cliff Walking | S&B Example 6.6 | ○ | |
+| Dyna Maze | S&B Example 8.1 | ○ | |
+| Mountain Car | S&B Example 10.1 | ○ | |
+| Short Corridor | S&B Example 13.1 | ○ | |
+| CartPole | Classic control | ○ | |
 
-Monte Carlo prediction and control (S&B §5). Reproduces Figs 5.1–5.2.
-
-![Blackjack — optimal policy and value function](notebooks/01_blackjack/blackjack_overview.png)
-
-### Windy Gridworld — [`notebooks/02_windy_gridworld/`](notebooks/02_windy_gridworld/)
-
-Sarsa on-policy TD control (S&B Example 6.5), with King's-moves and stochastic-wind variants. Interactive Plotly notebook (hover for values, animated policy formation).
-
-![Windy Gridworld — value function and optimal path](notebooks/02_windy_gridworld/windy_gridworld_overview.png)
+<sub>● implemented &nbsp;·&nbsp; ○ planned</sub>
 
 ## Contact
 
 - Email: sampath@umich.edu
 - LinkedIn: [sai-sampath-kedari](https://www.linkedin.com/in/sai-sampath-kedari)
+
+## Gallery
+
+<table>
+<tr>
+<td align="center" width="50%">
+<b>Blackjack</b>: optimal policy π* and value V* (S&amp;B Fig 5.2)<br><br>
+<img src="notebooks/01_blackjack/blackjack_overview.png" alt="Blackjack optimal policy and value function" height="300">
+</td>
+<td align="center" width="50%">
+<b>Windy Gridworld</b>: value V(s) and 15-step optimal path (S&amp;B Ex. 6.5)<br><br>
+<img src="notebooks/02_windy_gridworld/windy_gridworld_overview.png" alt="Windy Gridworld value function and optimal path" height="300">
+</td>
+</tr>
+</table>
