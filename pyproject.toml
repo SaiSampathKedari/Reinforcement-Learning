@@ -11,6 +11,8 @@ requires-python = ">=3.10"
 dependencies = [
     "numpy",
     "matplotlib",
+    "plotly",
+    "nbformat",
     "ipykernel",
 ]
 
