@@ -4,10 +4,6 @@ Reinforcement learning algorithms with mathematical derivations and reproduction
 
 Theoretical foundations live in [`Sequential-Decision-Making`](https://github.com/SaiSampathKedari/Sequential-Decision-Making). Deep-RL methods will live in [`Deep-Reinforcement-Learning`](https://github.com/SaiSampathKedari/Deep-Reinforcement-Learning).
 
-![Windy Gridworld — value function and optimal path](notebooks/02_windy_gridworld/windy_gridworld_overview.png)
-
-> **Windy Gridworld** (S&B Example 6.5): the state-value function `V(s)` learned by Sarsa, and the resulting 15-step optimal path from **S** to **G**. The upward wind (per-column strength shown below) bends the path. Interactive notebook: [`notebooks/02_windy_gridworld/`](notebooks/02_windy_gridworld/).
-
 ## Setup
 
 ```bash
@@ -25,12 +21,23 @@ Requires Python ≥ 3.10.
 - `notebooks/` — experiments, one folder per environment.
 - `reports/` — LaTeX derivations (PDFs).
 
-## Status
+## Algorithms
 
-- **Blackjack** environment with Monte Carlo prediction and control (reproduces S&B Figs 5.1–5.2).
-- **Windy Gridworld** environment with Sarsa on-policy TD control (reproduces S&B Example 6.5), plus King's-moves / stochastic-wind variants.
-- TD control algorithms: Sarsa(0), n-step Sarsa, Sarsa(λ), Q-learning.
-- Reports for Monte Carlo control, eligibility traces, and TD control.
+Monte Carlo (prediction, exploring-starts and ε-soft control) · TD prediction · n-step TD · TD(λ) · Sarsa(0) · n-step Sarsa · Sarsa(λ) · Q-learning. Mathematical derivations live in [`reports/`](reports/) (LaTeX PDFs).
+
+## Environments
+
+### Blackjack — [`notebooks/01_blackjack/`](notebooks/01_blackjack/)
+
+Monte Carlo prediction and control (S&B §5). Reproduces Figs 5.1–5.2.
+
+![Blackjack — optimal policy and value function](notebooks/01_blackjack/blackjack_overview.png)
+
+### Windy Gridworld — [`notebooks/02_windy_gridworld/`](notebooks/02_windy_gridworld/)
+
+Sarsa on-policy TD control (S&B Example 6.5), with King's-moves and stochastic-wind variants. Interactive Plotly notebook (hover for values, animated policy formation).
+
+![Windy Gridworld — value function and optimal path](notebooks/02_windy_gridworld/windy_gridworld_overview.png)
 
 ## Contact
 
