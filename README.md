@@ -23,15 +23,15 @@ Requires Python ≥ 3.10.
 
 ## Algorithms
 
-| Topic (Sutton & Barto) | Status |
-|---|:--:|
-| Monte Carlo methods (Ch. 5) | ● |
-| Temporal-difference learning (Ch. 6) | ● |
-| n-step bootstrapping (Ch. 7) | ● |
-| Eligibility traces (Ch. 12) | ● |
-| Planning & model-based learning (Ch. 8) | ○ |
-| Value-function approximation (Ch. 9-10) | ○ |
-| Policy-gradient & actor-critic (Ch. 13) | ○ |
+| Category | Algorithms | Status |
+|---|---|:--:|
+| Model-free prediction | MC prediction, TD(0), n-step TD, TD(λ) | ● |
+| Model-free control | Sarsa, Q-learning, n-step Sarsa, Sarsa(λ) | ● |
+| Model-based & planning | Dyna-Q, prioritized sweeping | ○ |
+| Value-function approximation | semi-gradient TD / Sarsa, tile coding | ○ |
+| Policy gradient | REINFORCE, REINFORCE with baseline | ○ |
+| Actor-critic | one-step actor-critic, advantage actor-critic (A2C) | ○ |
+| Trust-region & proximal methods | natural policy gradient, TRPO, PPO | ○ |
 
 <sub>● implemented &nbsp;·&nbsp; ○ planned</sub>
 
@@ -42,10 +42,12 @@ Requires Python ≥ 3.10.
 | Blackjack | S&B §5.1 | ● | [`01_blackjack`](notebooks/01_blackjack/) |
 | Windy Gridworld | S&B Example 6.5 | ● | [`02_windy_gridworld`](notebooks/02_windy_gridworld/) |
 | Cliff Walking | S&B Example 6.6 | ○ | |
+| FrozenLake | Gymnasium | ○ | |
 | Dyna Maze | S&B Example 8.1 | ○ | |
 | Mountain Car | S&B Example 10.1 | ○ | |
-| Short Corridor | S&B Example 13.1 | ○ | |
+| Acrobot | Classic control | ○ | |
 | CartPole | Classic control | ○ | |
+| Short Corridor | S&B Example 13.1 | ○ | |
 
 <sub>● implemented &nbsp;·&nbsp; ○ planned</sub>
 
