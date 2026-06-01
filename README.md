@@ -41,6 +41,7 @@ Requires Python ≥ 3.10.
 |---|---|:--:|---|
 | Blackjack | S&B §5.1 | ● | [`01_blackjack`](notebooks/01_blackjack/) |
 | Windy Gridworld | S&B Example 6.5 | ● | [`02_windy_gridworld`](notebooks/02_windy_gridworld/) |
+| Random Walk | S&B Examples 6.2 / 7.1 / 9.1 | ○ | [`03_random_walk`](notebooks/03_random_walk/) |
 | Cliff Walking | S&B Example 6.6 | ○ | |
 | FrozenLake | Gymnasium | ○ | |
 | Dyna Maze | S&B Example 8.1 | ○ | |

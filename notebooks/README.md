@@ -11,6 +11,7 @@ Figures are interactive where noted.
 |---|---|---|---|
 | [`01_blackjack/`](01_blackjack/) | Blackjack | Monte Carlo prediction & control | S&B §5.1 |
 | [`02_windy_gridworld/`](02_windy_gridworld/) | Windy Gridworld | Sarsa (on-policy TD control) | S&B Example 6.5 |
+| [`03_random_walk/`](03_random_walk/) | Random Walk _(planned)_ | TD / n-step / function-approximation prediction | S&B Examples 6.2 / 7.1 / 9.1 |
 
 ## Sutton & Barto cross-reference
 
