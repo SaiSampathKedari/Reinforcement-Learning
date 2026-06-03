@@ -28,10 +28,15 @@ def uniform_jump_policy(env: RandomWalk, max_step: int) -> np.ndarray:
 
 
 def policy_sampler(pi: np.ndarray) -> Policy:
-    """Turn a policy matrix pi(a|s) into a sampler (s, rng) -> action."""
-    n_actions = pi.shape[1]
+    """Turn a policy matrix pi(a|s) into a sampler (s, rng) -> action.
+
+    Precomputes each state's nonzero actions, so a draw is O(#neighbors) instead
+    of O(n_actions) -- matters here since n_actions == n_states (~1000).
+    """
+    actions = [np.nonzero(row)[0] for row in pi]              # nonzero actions per state
+    probs = [row[acts] for row, acts in zip(pi, actions)]     # their probabilities
 
     def policy(s: int, rng: np.random.Generator) -> int:
-        return int(rng.choice(n_actions, p=pi[s]))
+        return int(rng.choice(actions[s], p=probs[s]))
 
     return policy
