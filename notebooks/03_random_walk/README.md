@@ -22,4 +22,4 @@ and `±100` walks are different policies on one env. Environment code:
   policy. So `pi(s' | s)` is the transition kernel, and true values follow from
   solving `v = (I - gamma P_pi)^{-1} r_pi`.
 - Example 9.1 is the first function-approximation method (state aggregation); its
-  agent will live in a new `src/rl/approx/` module, not in `src/rl/td/`.
+  agent will live in a new `src/rl/function_approximation/` module, not in `src/rl/td/`.
