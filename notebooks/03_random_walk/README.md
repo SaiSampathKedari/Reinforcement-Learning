@@ -13,7 +13,7 @@ and `±100` walks are different policies on one env. Environment code:
 |---|---|---|
 | `01_td_prediction_random_walk.ipynb` | S&B Example 6.2 (5-state) | TD(0) vs MC prediction |
 | `02_n_step_td_random_walk.ipynb` | S&B Example 7.1 (19-state) | n-step TD prediction |
-| `03_state_aggregation_random_walk.ipynb` | S&B Example 9.1 (1000-state) | gradient MC / semi-gradient TD with state aggregation |
+| `03_state_aggregation_mc.ipynb` | S&B Example 9.1 (1000-state) | gradient MC / semi-gradient TD with state aggregation |
 
 ## Notes
 
