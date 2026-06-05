@@ -1,4 +1,4 @@
-"""Plot for the 1000-state Random Walk (S&B Figure 9.1)."""
+"""Plots for the 1000-state Random Walk (S&B Figures 9.1, 9.2)."""
 
 from __future__ import annotations
 import numpy as np
@@ -41,4 +41,49 @@ def plot_figure_9_1(states, v_hat, v_true, mu, n_episodes=None):
         title += f"\n{n_episodes:,} episodes"
     ax.set_title(title, fontsize=11)
     fig.tight_layout()
+    return fig
+
+
+def plot_figure_9_2(states, v_hat_td, v_true, alphas, n_values, errors, n_runs=None):
+    """Reproduce S&B Fig 9.2 (two panels).
+
+    Left: the near-asymptotic semi-gradient TD(0) value `v_hat_td` (a step
+    function, 10 groups) against the true value `v_pi` -- worse than the MC
+    approximation of Fig 9.1.
+
+    Right: n-step semi-gradient TD with 20-group aggregation. `errors` is the
+    average RMS error (over all states and the first few episodes), shape
+    (len(n_values), len(alphas)); each row is one learning-rate curve for a given
+    n, plotted against `alphas`. Returns the matplotlib figure.
+    """
+    fig, (axL, axR) = plt.subplots(1, 2, figsize=(13, 5.5))
+
+    # --- Left: asymptotic TD value vs true value ---
+    axL.plot(states, v_true, color=TRUE_C, lw=2.0, label=r"true value $v_\pi$")
+    axL.plot(states, v_hat_td, color=APPROX_C, lw=2.0,
+             label=r"approximate TD value $\hat{v}$")
+    axL.set_xlabel("State")
+    axL.set_ylabel("Value")
+    axL.set_ylim(-1.05, 1.05)
+    axL.margins(x=0)
+    axL.legend(loc="upper left", frameon=False)
+    axL.set_title("Left: asymptotic semi-gradient TD(0)\n(10 groups)", fontsize=11)
+
+    # --- Right: RMS error vs alpha, one curve per n ---
+    errors = np.asarray(errors)
+    cmap = plt.cm.viridis(np.linspace(0, 0.92, len(n_values)))
+    for row, n, c in zip(errors, n_values, cmap):
+        axR.plot(alphas, row, color=c, lw=1.6, label=f"n={n}")
+    axR.set_xlabel(r"$\alpha$")
+    axR.set_ylabel("Average RMS error\n(over 1000 states, first 10 episodes)")
+    axR.set_xlim(0, 1)
+    axR.set_ylim(0.25, 0.55)
+    axR.legend(loc="upper right", frameon=False, ncol=2, fontsize=8)
+    axR.set_title("Right: n-step semi-gradient TD\n(20 groups)", fontsize=11)
+
+    sup = "Figure 9.2 — bootstrapping with state aggregation (1000-state random walk)"
+    if n_runs is not None:
+        sup += f"   ({n_runs} runs)"
+    fig.suptitle(sup, fontsize=12)
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
     return fig
