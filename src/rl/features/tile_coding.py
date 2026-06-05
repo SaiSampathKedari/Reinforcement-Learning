@@ -1,42 +1,35 @@
-"""Tile coding over continuous inputs (S&B 9.5.4).
+"""Tile coding for action-value features (S&B 9.5.4).
 
 Thin wrapper over Sutton's reference tile coder (`tiles3.py`, vendored verbatim).
-It maps a continuous state -- or state + discrete action -- to a sparse set of
-active tile indices in a hashed feature space (an IHT), then exposes that as the
-`FeatureMap` interface so `LinearValue` and the gradient learners use it
-unchanged.
+It maps a continuous state plus a discrete action to a binary feature vector
+x(s, a) -- a `StateActionFeatureMap` -- so `LinearActionValue` and the control
+learners use it through the standard interface.
 
-Two uses:
-    - state value v_hat(s):   `tc(state)`              (e.g. Fig 9.10)
-    - action value q_hat(s,a): `tc(state, ints=(a,))`  (e.g. Mountain Car, Ch.10)
-
-For action values, the action enters as an integer coordinate so each action gets
-its own tiles within the shared IHT -- the standard tiles3 idiom for q(s,a).
-
-Note: unlike the discrete feature maps, this is over *continuous* inputs, so the
-`matrix(n_states)` helper (which enumerates integer states) does not apply.
+The action enters as an integer tile coordinate, so each action gets its own
+tiles within the shared IHT (the standard tiles3 idiom for q(s, a)): one flat
+weight vector, three disjoint per-action regions.
 """
 
 from __future__ import annotations
 import numpy as np
 
-from rl.features.base import FeatureMap
+from rl.features.base import StateActionFeatureMap, State
 from rl.features import tiles3
 
 
-class TileCoding(FeatureMap):
-    """N-dimensional grid tile coding via an index-hash table (IHT).
+class TileCoding(StateActionFeatureMap):
+    """N-dimensional grid tile coding of (state, action) via an index-hash table.
 
     Args:
         n_tilings: number of overlapping tilings (e.g. 8). Each contributes one
             active tile per query, so exactly `n_tilings` features are active.
         tiles_per_dim: tiles spanning each dimension's range, so a tile covers
             1/tiles_per_dim of that range (the resolution).
-        dim_bounds: list of (low, high) per input dimension, used to scale each
+        dim_bounds: list of (low, high) per state dimension, used to scale each
             input so its range spans `tiles_per_dim` units (what tiles3 expects).
         iht_size: size of the hash table = `n_features`. Must exceed the number
-            of distinct tiles actually visited or hashing collides (mountain car
-            uses 4096).
+            of distinct (tile, action) keys actually visited or hashing collides
+            (mountain car uses 4096).
     """
 
     def __init__(self, n_tilings, tiles_per_dim, dim_bounds, iht_size=4096):
@@ -49,27 +42,15 @@ class TileCoding(FeatureMap):
         self._scale = [tiles_per_dim / (hi - lo) for (lo, hi) in self.dim_bounds]
         self._low = [lo for (lo, _) in self.dim_bounds]
 
-    def active(self, state, ints=()) -> list[int]:
-        """Active tile indices for `state` (length `n_tilings`).
+    def __call__(self, s: State, a: int) -> np.ndarray:
+        """Dense binary feature vector x(s, a) of length `n_features`.
 
-        `ints` are extra integer coordinates (e.g. a discrete action) that key
-        distinct tiles within the IHT. Use this in the learner to read/update
-        only the active weights -- the sparse, fast path.
+        Exactly `n_tilings` entries are 1 (the active tiles for this (s, a)); the
+        action is hashed in as an extra tile coordinate, so distinct actions never
+        share tiles.
         """
-        scaled = [sc * (x - lo) for x, sc, lo in zip(state, self._scale, self._low)]
-        return tiles3.tiles(self.iht, self.n_tilings, scaled, list(ints))
-
-    def __call__(self, state, ints=()) -> np.ndarray:
-        """Dense multi-hot feature vector x(state) of length `n_features`.
-
-        Conforms to `FeatureMap` so `LinearValue` works directly; for speed in
-        the inner loop prefer `active()` (the active weights sum to the value).
-        """
+        scaled = [sc * (x - lo) for x, sc, lo in zip(s, self._scale, self._low)]
+        active = tiles3.tiles(self.iht, self.n_tilings, scaled, [a])
         x = np.zeros(self.n_features)
-        x[self.active(state, ints)] = 1.0
+        x[active] = 1.0
         return x
-
-    def matrix(self, n_states: int) -> np.ndarray:
-        raise NotImplementedError(
-            "TileCoding is over continuous inputs; matrix(n_states) does not apply."
-        )
