@@ -46,7 +46,7 @@ Requires Python ≥ 3.10.
 | Cliff Walking | S&B Example 6.6 | ○ | |
 | FrozenLake | Gymnasium | ○ | |
 | Dyna Maze | S&B Example 8.1 | ○ | |
-| Mountain Car | S&B Example 10.1 | ○ | |
+| Mountain Car | S&B Example 10.1 | ● | [`04_mountain_car`](notebooks/04_mountain_car/) |
 | Acrobot | Classic control | ○ | |
 | CartPole | Classic control | ○ | |
 | Short Corridor | S&B Example 13.1 | ○ | |
@@ -74,8 +74,17 @@ Requires Python ≥ 3.10.
 <tr>
 <td align="center" width="50%">
 <b>Random Walk</b>: gradient MC with state aggregation vs true v&#960; (S&amp;B Fig 9.1)<br><br>
-<img src="notebooks/03_random_walk/figure_9_1.png" alt="Gradient Monte Carlo with state aggregation on the 1000-state random walk" height="300">
+<img src="notebooks/03_random_walk/figure_9_1.png" alt="Gradient Monte Carlo with state aggregation on the 1000-state random walk" height="290">
 </td>
-<td align="center" width="50%"></td>
+<td align="center" width="50%">
+<b>Mountain Car</b>: cost-to-go &minus;max<sub>a</sub>&nbsp;q&#770;(s,a,<b>w</b>) learned by semi-gradient Sarsa (S&amp;B Fig 10.1)<br><br>
+<img src="notebooks/04_mountain_car/figure_10_1.png" alt="Mountain Car cost-to-go surfaces learned by semi-gradient Sarsa" height="290">
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<b>Mountain Car</b>: the learned greedy policy in action &mdash; reverse up the left slope to build momentum, then accelerate through to the goal<br><br>
+<img src="notebooks/04_mountain_car/mountain_car_policy.gif" alt="Mountain Car learned greedy policy animation" width="86%">
+</td>
 </tr>
 </table>
