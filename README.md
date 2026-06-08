@@ -17,9 +17,9 @@ Requires Python ≥ 3.10.
 
 ## Layout
 
-- `src/rl/`: algorithms and environments (see [`src/rl/README.md`](src/rl/README.md) for the package map).
-- `notebooks/`: experiments, one folder per environment.
-- `reports/`: derivations, proofs, and convergence analysis.
+- `src/rl/`: algorithms and environments (see the [package map](src/rl/README.md)).
+- `notebooks/`: experiments, one folder per environment (see the [notebook index](notebooks/README.md)).
+- `reports/`: derivations, proofs, and convergence analysis (see the [report index](reports/README.md)).
 
 ## Algorithms
 
