@@ -29,7 +29,7 @@ Requires Python ≥ 3.10.
 | Model-free control | Sarsa, Q-learning, n-step Sarsa, Sarsa(λ) | ● |
 | Dynamic programming | policy evaluation; policy & value iteration | ◐ |
 | Model-based & planning | Dyna-Q, prioritized sweeping | ○ |
-| Value-function approximation | gradient MC, state aggregation; semi-gradient TD / Sarsa, tile coding | ◐ |
+| Value-function approximation | gradient MC, state aggregation; semi-gradient TD / Sarsa, n-step semi-gradient TD / Sarsa, tile coding | ◐ |
 | Policy gradient | REINFORCE, REINFORCE with baseline | ○ |
 | Actor-critic | one-step actor-critic, advantage actor-critic (A2C) | ○ |
 | Trust-region & proximal methods | natural policy gradient, TRPO, PPO | ○ |
