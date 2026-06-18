@@ -53,6 +53,15 @@ Requires Python ≥ 3.10.
 
 <sub>● implemented &nbsp;·&nbsp; ○ planned</sub>
 
+## Related repositories
+
+A sequence from mathematical foundations to deep RL:
+
+- **Foundations** — [Real Analysis](https://github.com/SaiSampathKedari/Real-Analysis) · [Probability & Distribution Theory](https://github.com/SaiSampathKedari/Probability-and-Distribution-Theory) · [Statistical Inference Theory](https://github.com/SaiSampathKedari/Statistical-Inference-Theory)
+- **RL theory** — [Sequential Decision Making](https://github.com/SaiSampathKedari/Sequential-Decision-Making)
+- **This repo** — Reinforcement Learning: S&B algorithms and figure reproductions
+- **Next** — [Deep Reinforcement Learning](https://github.com/SaiSampathKedari/Deep-Reinforcement-Learning)
+
 ## Contact
 
 - Email: sampath@umich.edu
