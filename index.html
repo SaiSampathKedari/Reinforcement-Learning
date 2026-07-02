@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Reinforcement Learning | Sutton &amp; Barto | Sai Sampath Kedari</title>
+  <meta name="description" content="Reinforcement learning algorithms with mathematical derivations and reproductions of figures from Sutton & Barto (2nd ed., 2020): Monte Carlo, TD, n-step, function approximation, and policy gradients.">
+  <meta name="keywords" content="Reinforcement Learning, Sutton Barto, Monte Carlo, Temporal Difference, SARSA, Q-Learning, Function Approximation, Tile Coding, Policy Gradient, Mountain Car, Machine Learning, Robotics, AI, Sai Sampath Kedari">
+  <meta name="author" content="Sai Sampath Kedari">
+
+  <style>
+    body {font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu; background:#0b0f17; color:#e5e7eb; margin:0; line-height:1.6;}
+    main {max-width:900px; margin:auto; padding:40px 20px;}
+    h1 {font-size:2rem; margin-bottom:.2em;}
+    h2 {color:#93c5fd; margin-top:1.5em;}
+    a {color:#60a5fa; text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    ul {margin-left:1.2em;}
+    code {background:#111827; padding:2px 5px; border-radius:4px; font-size:0.9em;}
+    .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:1em;}
+    .gallery figure {margin:0; background:#111827; border:1px solid #1f2937; border-radius:10px; padding:10px;}
+    .gallery img {width:100%; height:auto; border-radius:6px; display:block;}
+    .gallery figcaption {font-size:0.85em; color:#9ca3af; margin-top:8px;}
+    footer {margin-top:40px; border-top:1px solid #1f2937; padding-top:20px; color:#9ca3af; font-size:0.9em;}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Reinforcement Learning — Sutton &amp; Barto</h1>
+    <p>Reinforcement learning algorithms implemented from scratch with <strong>mathematical derivations</strong> and faithful <strong>reproductions of figures</strong> from <em>Sutton &amp; Barto: Reinforcement Learning, An Introduction</em> (2nd ed., 2020). The focus is on understanding each method — from tabular Monte Carlo and temporal-difference control to function approximation and policy gradients — as a building block for <strong>Machine Learning</strong>, <strong>AI</strong>, and <strong>Robotics</strong>.</p>
+
+    <h2>Algorithms</h2>
+    <ul>
+      <li><strong>Monte Carlo</strong>: prediction, control with exploring starts, on-policy &epsilon;-soft control.</li>
+      <li><strong>Temporal-Difference</strong>: TD(0), Sarsa, Q-learning, n-step TD / Sarsa, TD(&lambda;), Sarsa(&lambda;).</li>
+      <li><strong>Function approximation</strong>: gradient Monte Carlo, semi-gradient TD / Sarsa, n-step semi-gradient methods.</li>
+      <li><strong>Representations</strong>: state aggregation and tile coding over linear value / action-value models.</li>
+      <li><strong>Dynamic programming</strong>: exact policy evaluation used as ground truth.</li>
+    </ul>
+
+    <h2>Environments &amp; figure reproductions</h2>
+    <ul>
+      <li><strong>Blackjack</strong> — MC prediction &amp; control (Figs 5.1, 5.2).</li>
+      <li><strong>Windy Gridworld</strong> — on-policy Sarsa control (Example 6.5).</li>
+      <li><strong>1000-state Random Walk</strong> — gradient MC &amp; n-step bootstrapping with state aggregation (Figs 9.1, 9.2).</li>
+      <li><strong>Mountain Car</strong> — episodic semi-gradient Sarsa with tile coding (Fig 10.1).</li>
+    </ul>
+
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <figure>
+        <img src="notebooks/04_mountain_car/mountain_car_policy.gif" alt="Mountain Car learned greedy policy animation" loading="lazy">
+        <figcaption>Mountain Car — learned greedy policy: reverse to build momentum, then accelerate to the goal.</figcaption>
+      </figure>
+      <figure>
+        <img src="notebooks/04_mountain_car/figure_10_1.png" alt="Mountain Car cost-to-go surfaces" loading="lazy">
+        <figcaption>Cost-to-go &minus;max<sub>a</sub> q&#770;(s,a) learned by semi-gradient Sarsa (Fig 10.1).</figcaption>
+      </figure>
+      <figure>
+        <img src="notebooks/01_blackjack/blackjack_overview.png" alt="Blackjack optimal policy and value function" loading="lazy">
+        <figcaption>Blackjack — optimal policy &pi;* and value V* (Fig 5.2).</figcaption>
+      </figure>
+      <figure>
+        <img src="notebooks/02_windy_gridworld/windy_gridworld_overview.png" alt="Windy Gridworld value function and optimal path" loading="lazy">
+        <figcaption>Windy Gridworld — value V(s) and 15-step optimal path (Example 6.5).</figcaption>
+      </figure>
+      <figure>
+        <img src="notebooks/03_random_walk/figure_9_1.png" alt="Gradient Monte Carlo with state aggregation" loading="lazy">
+        <figcaption>1000-state Random Walk — gradient MC with state aggregation vs true v&#960; (Fig 9.1).</figcaption>
+      </figure>
+    </div>
+
+    <h2>Related repositories</h2>
+    <p>Part of a sequence from mathematical foundations to deep RL:</p>
+    <ul>
+      <li><strong>Foundations</strong> — <a href="https://github.com/SaiSampathKedari/Real-Analysis" target="_blank">Real Analysis</a>, <a href="https://github.com/SaiSampathKedari/Probability-and-Distribution-Theory" target="_blank">Probability &amp; Distribution Theory</a>, <a href="https://github.com/SaiSampathKedari/Statistical-Inference-Theory" target="_blank">Statistical Inference Theory</a></li>
+      <li><strong>RL theory</strong> — <a href="https://github.com/SaiSampathKedari/Sequential-Decision-Making" target="_blank">Sequential Decision Making</a></li>
+      <li><strong>This repo</strong> — Reinforcement Learning: Sutton &amp; Barto algorithms and figure reproductions</li>
+      <li><strong>Next</strong> — <a href="https://github.com/SaiSampathKedari/Deep-Reinforcement-Learning" target="_blank">Deep Reinforcement Learning</a></li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>
+      📧 <a href="mailto:sampath@umich.edu">sampath@umich.edu</a><br>
+      🔗 <a href="https://www.linkedin.com/in/sai-sampath-kedari" target="_blank">LinkedIn</a><br>
+      🧠 <a href="https://github.com/SaiSampathKedari/Reinforcement-Learning" target="_blank">View Repository on GitHub</a>
+    </p>
+
+    <footer>
+      <p>© <span id="y"></span> Sai Sampath Kedari | Reinforcement Learning — Sutton &amp; Barto (2nd ed., 2020)</p>
+    </footer>
+  </main>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
