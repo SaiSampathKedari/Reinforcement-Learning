@@ -15,13 +15,20 @@ follows Sutton & Barto.
 | 06 | [On-Policy TD Control: SARSA(λ)](06_On-Policy-TD-Control-SARSA-Lambda.pdf) | §12.7 | Sarsa(lambda), eligibility traces |
 | 07 | [Off-Policy TD Control: Q-Learning](07_Off-Policy-TD-Control-Q-Learning.pdf) | §6.5 | Q-learning |
 | 08 | [On-Policy Prediction: Value-Function Approximation](08_On-Policy-Prediction_Value-Function-Approximation.pdf) | Ch 9 | gradient MC, semi-gradient TD, the VE objective |
+| 10 | [The Policy Gradient Theorem](10_Policy-Gradient-Theorem.pdf) | §13.2 | discounted objective, visitation measure, exact gradient |
+| 11 | [Average-Reward Policy Gradient Theorem](11_Average-Reward-Policy-Gradient-Theorem.pdf) | §13.6 | continuing-task objective, stationary distribution |
+| 12 | [Policy Gradient Theorem: Episodic Trajectory Route](12_Policy-Gradient-Theorem_Episodic-Trajectory-Route.pdf) | §13.2 | trajectory-likelihood derivation |
+| 13 | [Policy Gradient Preliminaries](13_Policy-Gradient-Preliminaries.pdf) | -- | score function, log-derivative trick, expected score is zero |
+| 14 | [REINFORCE](14_REINFORCE.pdf) | §13.3 | Monte Carlo policy gradient |
+| 15 | [Actor-Critic](15_Actor-Critic.pdf) | §13.5 | GPI view; from the exact gradient to QAC, one move at a time |
+| 16 | [Actor-Critic with a Baseline](16_Actor-Critic-with-a-Baseline.pdf) | §13.4-13.5 | baseline identity, advantage, TD error as one-sample advantage |
+| 17 | [GAE Actor-Critic](17_GAE_Actor-Critic.pdf) | -- | n-step advantages and their λ-mixture (Schulman et al., 2016) |
 
 ### In progress
 
 - **On-Policy Control with Approximation** (Ch 10) -- episodic semi-gradient
-  Sarsa and n-step Sarsa; the Mountain Car study.
-- **Average Reward & Differential Value** (§10.3-10.5) -- the continuing-task
-  setting, differential semi-gradient Sarsa, access-control queuing.
+  Sarsa and n-step Sarsa; the Mountain Car study (reserved as report 09).
+- **Trust-region line** -- natural policy gradient, TRPO, PPO.
 
 > Theory companions to the code: prediction lives in
 > [`prediction_approx/`](../src/rl/prediction_approx/), control in
