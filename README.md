@@ -11,6 +11,8 @@ git clone https://github.com/SaiSampathKedari/Reinforcement-Learning
 cd Reinforcement-Learning
 python -m venv .venv && source .venv/bin/activate
 pip install -e .
+# or, with uv
+uv sync
 ```
 
 Requires Python ≥ 3.10.
@@ -35,6 +37,29 @@ Requires Python ≥ 3.10.
 | Trust-region & proximal methods | natural policy gradient, TRPO, PPO | ○ |
 
 <sub>● implemented &nbsp;·&nbsp; ◐ partial &nbsp;·&nbsp; ○ planned</sub>
+
+## Reports — derivations & proofs
+
+Self-contained PDF write-ups, numbered in reading order (see the [report index](reports/README.md)):
+
+- **Tabular & approximation** —
+  [MC control (ES)](reports/01_Monte-Carlo-Control-with-Exploring-Starts.pdf),
+  [ε-soft MC control](reports/02_Monte-Carlo-Control-without-Exploring-Starts.pdf),
+  [TD & eligibility traces](reports/03_TD-Prediction-Eligibility-Traces.pdf),
+  [Sarsa(0)](reports/04_On-Policy-TD-Control-SARSA-0.pdf),
+  [n-step Sarsa](reports/05_On-Policy-TD-Control-n-Step-SARSA.pdf),
+  [Sarsa(λ)](reports/06_On-Policy-TD-Control-SARSA-Lambda.pdf),
+  [Q-learning](reports/07_Off-Policy-TD-Control-Q-Learning.pdf),
+  [value-function approximation](reports/08_On-Policy-Prediction_Value-Function-Approximation.pdf).
+- **Policy gradient & actor-critic** —
+  [policy gradient theorem](reports/10_Policy-Gradient-Theorem.pdf),
+  [average-reward PG](reports/11_Average-Reward-Policy-Gradient-Theorem.pdf),
+  [trajectory route](reports/12_Policy-Gradient-Theorem_Episodic-Trajectory-Route.pdf),
+  [PG preliminaries](reports/13_Policy-Gradient-Preliminaries.pdf),
+  [REINFORCE](reports/14_REINFORCE.pdf),
+  [actor-critic](reports/15_Actor-Critic.pdf),
+  [baseline & advantage](reports/16_Actor-Critic-with-a-Baseline.pdf),
+  [GAE](reports/17_GAE_Actor-Critic.pdf).
 
 ## Environments
 
