@@ -2,7 +2,7 @@
 
 Reinforcement learning algorithms with mathematical derivations and reproductions of figures from Sutton & Barto, *Reinforcement Learning: An Introduction* (2nd ed., 2020).
 
-Theoretical foundations live in [`Sequential-Decision-Making`](https://github.com/SaiSampathKedari/Sequential-Decision-Making). Deep-RL methods will live in [`Deep-Reinforcement-Learning`](https://github.com/SaiSampathKedari/Deep-Reinforcement-Learning).
+Broader MDP theory lives in [`Sequential-Decision-Making`](https://github.com/SaiSampathKedari/Sequential-Decision-Making); the Sutton-notation foundations are also included here as derivations 01–03. Deep-RL methods live in [`Deep-Reinforcement-Learning`](https://github.com/SaiSampathKedari/Deep-Reinforcement-Learning).
 
 ## Setup
 
@@ -21,7 +21,7 @@ Requires Python ≥ 3.10.
 
 - `src/rl/`: algorithms and environments (see the [package map](src/rl/README.md)).
 - `notebooks/`: experiments, one folder per environment (see the [notebook index](notebooks/README.md)).
-- `reports/`: derivations, proofs, and convergence analysis (see the [report index](reports/README.md)).
+- `mathematical_derivations/`: derivations, proofs, and convergence analysis (see the [derivation index](mathematical_derivations/README.md)).
 
 ## Algorithms
 
@@ -38,28 +38,32 @@ Requires Python ≥ 3.10.
 
 <sub>● implemented &nbsp;·&nbsp; ◐ partial &nbsp;·&nbsp; ○ planned</sub>
 
-## Reports — derivations & proofs
+## Mathematical derivations
 
-Self-contained PDF write-ups, numbered in reading order (see the [report index](reports/README.md)):
+Self-contained PDF write-ups in a shared reading sequence with Deep RL (see the [derivation index](mathematical_derivations/README.md)). This repository covers 01–20, with 12 reserved for on-policy control with approximation; Deep RL shares 13–20 and continues from 21.
 
+- **MDP & dynamic-programming foundations (01–03)** —
+  [policy evaluation in Sutton notation](mathematical_derivations/01_Policy-Evaluation-in-Sutton-Notation.pdf),
+  [Bellman operators](mathematical_derivations/02_Bellman-Operators.pdf),
+  [policy improvement theorem](mathematical_derivations/03_Policy-Improvement-Theorem.pdf).
 - **Tabular & approximation** —
-  [MC control (ES)](reports/01_Monte-Carlo-Control-with-Exploring-Starts.pdf),
-  [ε-soft MC control](reports/02_Monte-Carlo-Control-without-Exploring-Starts.pdf),
-  [TD & eligibility traces](reports/03_TD-Prediction-Eligibility-Traces.pdf),
-  [Sarsa(0)](reports/04_On-Policy-TD-Control-SARSA-0.pdf),
-  [n-step Sarsa](reports/05_On-Policy-TD-Control-n-Step-SARSA.pdf),
-  [Sarsa(λ)](reports/06_On-Policy-TD-Control-SARSA-Lambda.pdf),
-  [Q-learning](reports/07_Off-Policy-TD-Control-Q-Learning.pdf),
-  [value-function approximation](reports/08_On-Policy-Prediction_Value-Function-Approximation.pdf).
+  [MC control (ES)](mathematical_derivations/04_Monte-Carlo-Control-with-Exploring-Starts.pdf),
+  [ε-soft MC control](mathematical_derivations/05_Monte-Carlo-Control-without-Exploring-Starts.pdf),
+  [TD & eligibility traces](mathematical_derivations/06_TD-Prediction-Eligibility-Traces.pdf),
+  [Sarsa(0)](mathematical_derivations/07_On-Policy-TD-Control-SARSA-0.pdf),
+  [n-step Sarsa](mathematical_derivations/08_On-Policy-TD-Control-n-Step-SARSA.pdf),
+  [Sarsa(λ)](mathematical_derivations/09_On-Policy-TD-Control-SARSA-Lambda.pdf),
+  [Q-learning](mathematical_derivations/10_Off-Policy-TD-Control-Q-Learning.pdf),
+  [value-function approximation](mathematical_derivations/11_On-Policy-Prediction_Value-Function-Approximation.pdf).
 - **Policy gradient & actor-critic** —
-  [policy gradient theorem](reports/10_Policy-Gradient-Theorem.pdf),
-  [average-reward PG](reports/11_Average-Reward-Policy-Gradient-Theorem.pdf),
-  [trajectory route](reports/12_Policy-Gradient-Theorem_Episodic-Trajectory-Route.pdf),
-  [PG preliminaries](reports/13_Policy-Gradient-Preliminaries.pdf),
-  [REINFORCE](reports/14_REINFORCE.pdf),
-  [actor-critic](reports/15_Actor-Critic.pdf),
-  [baseline & advantage](reports/16_Actor-Critic-with-a-Baseline.pdf),
-  [GAE](reports/17_GAE_Actor-Critic.pdf).
+  [policy gradient theorem](mathematical_derivations/13_Policy-Gradient-Theorem.pdf),
+  [average-reward PG](mathematical_derivations/14_Average-Reward-Policy-Gradient-Theorem.pdf),
+  [trajectory route](mathematical_derivations/15_Policy-Gradient-Theorem_Episodic-Trajectory-Route.pdf),
+  [PG preliminaries](mathematical_derivations/16_Policy-Gradient-Preliminaries.pdf),
+  [REINFORCE](mathematical_derivations/17_REINFORCE.pdf),
+  [actor-critic](mathematical_derivations/18_Actor-Critic.pdf),
+  [baseline & advantage](mathematical_derivations/19_Actor-Critic-with-a-Baseline.pdf),
+  [GAE](mathematical_derivations/20_GAE_Actor-Critic.pdf).
 
 ## Environments
 
